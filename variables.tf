@@ -22,3 +22,7 @@ variable "enable_sns_and_ses" {
   description = "Whether to enable the SNS and SES policy"
   type        = bool
 }
+variable "lambda_role_name" {
+  description = "The name of the Lambda role"
+  type        = string
+}

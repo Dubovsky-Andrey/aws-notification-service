@@ -1,7 +1,3 @@
-output "instances_public_ips" {
-  value = module.ec2-count.instances_public_ips
-}
-
 output "role_id" {
   description = "The ID of the IAM role"
   value       = module.iam-role-for-lambda.aws_iam_role.this.id
