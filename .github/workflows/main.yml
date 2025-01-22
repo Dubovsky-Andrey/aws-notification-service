@@ -5,9 +5,9 @@ on:
       - main
   pull_request:
 permissions:
-      id-token: write # This is required for aws oidc connection
-      contents: read # This is required for actions/checkout
-      pull-requests: write # This is required for gh bot to comment PR
+  id-token: write # This is required for aws oidc connection
+  contents: read # This is required for actions/checkout
+  pull-requests: write # This is required for gh bot to comment PR
 env:
   TF_LOG: INFO
   AWS_REGION: ${{ secrets.AWS_REGION }}
@@ -32,7 +32,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.2.5
+          terraform_version: 1.10.3
 
       - name: Terraform fmt
         id: fmt
