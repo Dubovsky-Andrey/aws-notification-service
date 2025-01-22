@@ -1,6 +1,11 @@
 resource "aws_iam_role" "this" {
   name = var.role_name
   path = var.role_path
+  role_name             = var.lambda_role_name
+  role_path             = var.role_path
+  assume_role_services  = var.assume_role_services
+  enable_cloudwatchlogs = var.enable_cloudwatchlogs
+  enable_sns_and_ses    = var.enable_sns_and_ses
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
