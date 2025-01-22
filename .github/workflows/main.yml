@@ -102,6 +102,8 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
       - name: Wait for 2 minutes
+        id: timer
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           echo "Waiting for 2 minutes..."
           sleep 40
