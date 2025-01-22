@@ -1,4 +1,4 @@
-module "iam-role-for-lambda"" {
+module "iam-role-for-lambda" {
   source = "./modules/iam-role-for-lambda"
 
   role_name             = var.lambda_role_name
