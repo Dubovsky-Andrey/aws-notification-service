@@ -96,17 +96,17 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply Plan
+      - name: Terraform Apply Apply
         id: apply 
         run: terraform apply -auto-approve -input=false
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
-      - name: Wait for 2 minutes
-        run: |
-          echo "Waiting for 2 minutes..."
-          sleep 40
+      # - name: Wait for 2 minutes
+      #   run: |
+      #     echo "Waiting for 2 minutes..."
+      #     sleep 40
       
-      - name: Terraform Destroy
-        id: destroy 
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform destroy -auto-approve -input=false
+      # - name: Terraform Destroy
+      #   id: destroy 
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: terraform destroy -auto-approve -input=false
