@@ -22,3 +22,8 @@ variable "enable_sns_and_ses" {
   description = "Whether to enable the SNS and SES policy"
   type        = bool
 }
+
+variable "aws_region" {
+  description = "The AWS region"
+  type        = string
+}
