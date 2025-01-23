@@ -1,7 +1,6 @@
 
 resource "aws_s3_bucket" "static_site" {
   bucket = var.bucket_name
-  acl    = "public-read"
 
   website {
     index_document = var.index_document
@@ -12,6 +11,11 @@ resource "aws_s3_bucket" "static_site" {
     Name        = "Static Site Bucket"
     Environment = "Production"
   }
+}
+
+resource "aws_s3_bucket_acl" "static_site_acl" {
+  bucket = aws_s3_bucket.static_site.id
+  acl    = "public-read"
 }
 
 # Bucket policy
