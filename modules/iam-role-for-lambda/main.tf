@@ -1,9 +1,6 @@
 resource "aws_iam_role" "this" {
   name = var.role_name
   path = var.role_path
-  assume_role_services  = var.assume_role_services
-  enable_cloudwatchlogs = var.enable_cloudwatchlogs
-  enable_sns_and_ses    = var.enable_sns_and_ses
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -34,15 +31,15 @@ resource "aws_iam_role_policy" "cloudwatchlogs" {
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ]
-        Resource = "arn:aws:logs:*:*:*"
+        Resource = "*"
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy" "snsandsespermissions" {
+resource "aws_iam_role_policy" "sns_and_ses" {
   count  = var.enable_sns_and_ses ? 1 : 0
-  name   = "snsandsespermissions"
+  name   = "sns_and_ses"
   role   = aws_iam_role.this.id
 
   policy = jsonencode({
@@ -51,9 +48,8 @@ resource "aws_iam_role_policy" "snsandsespermissions" {
       {
         Effect = "Allow"
         Action = [
-          "ses:*",
-          "sns:*",
-          "states:*"
+          "sns:Publish",
+          "ses:SendEmail"
         ]
         Resource = "*"
       }
