@@ -9,6 +9,6 @@ output "role_arn" {
 }
 
 output "website_url" {
-  description = "URL static site"
-  value       = aws_s3_bucket.static_site.website_endpoint
+  description = "URL статического сайта"
+  value       = module.s3_website.website_url
 }

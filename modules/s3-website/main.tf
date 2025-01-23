@@ -18,6 +18,7 @@ resource "aws_s3_bucket_acl" "static_site_acl" {
   acl    = "public-read"
 }
 
+
 # Bucket policy
 resource "aws_s3_bucket_policy" "static_site_policy" {
   bucket = aws_s3_bucket.static_site.id
@@ -37,7 +38,7 @@ resource "aws_s3_bucket_policy" "static_site_policy" {
 }
 
 # Upload files to the bucket
-resource "aws_s3_bucket_object" "website_files" {
+resource "aws_s3_object" "website_files" {
   for_each = fileset(var.website_files_path, "**/*")
 
   bucket       = aws_s3_bucket.static_site.bucket
@@ -55,3 +56,4 @@ resource "aws_s3_bucket_object" "website_files" {
     "application/octet-stream"
   )
 }
+
