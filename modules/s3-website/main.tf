@@ -62,7 +62,6 @@ resource "aws_s3_object" "website_files" {
   bucket       = aws_s3_bucket.static_site.bucket
   key          = each.value
   source       = "${var.website_files_path}${each.value}"
-  acl          = "public-read"
   content_type = lookup(
     {
       "html" = "text/html",
