@@ -16,4 +16,5 @@ module "s3-website" {
   index_document     = var.index_document
   error_document     = var.error_document
   website_files_path = var.website_files_path
+  aws_region         = var.aws_region
 }
