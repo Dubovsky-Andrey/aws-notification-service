@@ -9,6 +9,6 @@ output "role_arn" {
 }
 
 output "website_url" {
-  description = "URL статического сайта"
-  value       = module.s3_website.website_url
+  description = "URL Static Site"
+  value       = module.s3-website.website_url
 }
