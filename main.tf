@@ -1,8 +1,10 @@
-module "ec2-count" {
-  source         = "./modules/ec2-count"
-  environment    = var.environment
-  project        = var.project
-  ami            = var.ami
-  instance_type  = var.instance_type
-  instance_count = var.instance_count
+module "iam-role-for-lambda" {
+  source = "./modules/iam-role-for-lambda"
+
+
+  role_name             = var.role_name
+  role_path             = var.role_path
+  assume_role_services  = var.assume_role_services
+  enable_cloudwatchlogs = var.enable_cloudwatchlogs
+  enable_sns_and_ses    = var.enable_sns_and_ses
 }

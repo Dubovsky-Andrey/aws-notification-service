@@ -1,6 +1,8 @@
-environment    = "prod"
-project        = "project-name"
-aws_region     = "us-east-1"
-ami            = "ami-02dcfe5d1d39baa4e"
-instance_type  = "t4g.nano"
-instance_count = 2
+environment           = "prod"
+project               = "project-name"
+aws_region            = "us-east-1"
+role_name             = "LambdaRole"
+role_path             = "/"
+assume_role_services  = ["lambda.amazonaws.com"]
+enable_cloudwatchlogs = true
+enable_sns_and_ses    = true
