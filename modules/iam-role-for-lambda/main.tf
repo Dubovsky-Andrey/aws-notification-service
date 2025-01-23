@@ -31,7 +31,7 @@ resource "aws_iam_role_policy" "cloudwatchlogs" {
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ]
-        Resource = "*"
+        Resource = "arn:aws:logs:*:*:*"
       }
     ]
   })
@@ -48,8 +48,9 @@ resource "aws_iam_role_policy" "sns_and_ses" {
       {
         Effect = "Allow"
         Action = [
-          "sns:Publish",
-          "ses:SendEmail"
+          "ses:*",
+          "sns:*",
+          "states:*"
         ]
         Resource = "*"
       }
