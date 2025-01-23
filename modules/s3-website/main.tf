@@ -43,7 +43,7 @@ resource "aws_s3_bucket_policy" "static_site_policy" {
         Action    = [
         "s3:PutBucketPolicy",
         "s3:GetBucketPolicy",
-        "s3:GetObject"
+        "s3:GetObject",
         "s3:DeleteBucketPolicy"
       ],
         Resource  = "${aws_s3_bucket.static_site.arn}/*"
