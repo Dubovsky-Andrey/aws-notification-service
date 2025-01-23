@@ -1,8 +1,6 @@
 resource "aws_iam_role" "this" {
-  name = var.role_name
+  name = var.ambda_role_name
   path = var.role_path
-  role_name             = var.lambda_role_name
-  role_path             = var.role_path
   assume_role_services  = var.assume_role_services
   enable_cloudwatchlogs = var.enable_cloudwatchlogs
   enable_sns_and_ses    = var.enable_sns_and_ses
