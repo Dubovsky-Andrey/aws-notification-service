@@ -9,4 +9,4 @@ enable_sns_and_ses    = true
 bucket_name           = "dubovsky-andrey-website-bucket"
 index_document        = "index.html"
 error_document        = "error.html"
-website_files_path    = "website/"
+website_files_path    = "website"
