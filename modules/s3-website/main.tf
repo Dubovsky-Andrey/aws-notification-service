@@ -1,11 +1,5 @@
-
 resource "aws_s3_bucket" "static_site" {
   bucket = var.bucket_name
-
-  website {
-    index_document = var.index_document
-    error_document = var.error_document
-  }
 
   tags = {
     Name        = "Static Site Bucket"
@@ -13,11 +7,27 @@ resource "aws_s3_bucket" "static_site" {
   }
 }
 
-resource "aws_s3_bucket_acl" "static_site_acl" {
+
+resource "aws_s3_bucket_public_access_block" "static_site_public_access_block" {
   bucket = aws_s3_bucket.static_site.id
-  acl    = "public-read"
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_website_configuration" "static_site_website" {
+  bucket = aws_s3_bucket.static_site.id
+
+  index_document {
+    suffix = var.index_document
+  }
+
+  error_document {
+    key = var.error_document
+  }
+}
 
 # Bucket policy
 resource "aws_s3_bucket_policy" "static_site_policy" {
@@ -30,7 +40,7 @@ resource "aws_s3_bucket_policy" "static_site_policy" {
         Sid       = "PublicReadGetObject",
         Effect    = "Allow",
         Principal = "*",
-        Action    = "s3:GetObject",
+        Action    = "s3:*",
         Resource  = "${aws_s3_bucket.static_site.arn}/*"
       }
     ]
