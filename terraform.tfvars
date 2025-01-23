@@ -6,3 +6,7 @@ role_path             = "/"
 assume_role_services  = ["lambda.amazonaws.com"]
 enable_cloudwatchlogs = true
 enable_sns_and_ses    = true
+bucket_name           = "dubovsky-andrey-website-bucket"
+index_document        = "index.html"
+error_document        = "error.html"
+website_files_path    = "website"
