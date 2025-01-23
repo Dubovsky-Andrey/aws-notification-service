@@ -7,14 +7,13 @@ resource "aws_s3_bucket" "static_site" {
   }
 }
 
-
 resource "aws_s3_bucket_public_access_block" "static_site_public_access_block" {
   bucket = aws_s3_bucket.static_site.id
 
   block_public_acls       = true
   block_public_policy     = false
   ignore_public_acls      = true
-  restrict_public_buckets = true
+  restrict_public_buckets = false
 }
 
 resource "aws_s3_bucket_website_configuration" "static_site_website" {
@@ -29,7 +28,6 @@ resource "aws_s3_bucket_website_configuration" "static_site_website" {
   }
 }
 
-# Bucket policy
 resource "aws_s3_bucket_policy" "static_site_policy" {
   bucket = aws_s3_bucket.static_site.id
 
@@ -40,19 +38,24 @@ resource "aws_s3_bucket_policy" "static_site_policy" {
         Sid       = "PublicReadGetObject",
         Effect    = "Allow",
         Principal = "*",
-        Action    = [
-        "s3:PutBucketPolicy",
-        "s3:GetBucketPolicy",
-        "s3:GetObject",
-        "s3:DeleteBucketPolicy"
-      ],
+        Action    = "s3:GetObject",
         Resource  = "${aws_s3_bucket.static_site.arn}/*"
+      },
+      {
+        Sid       = "BucketPolicyActions",
+        Effect    = "Allow",
+        Principal = "*",
+        Action    = [
+          "s3:PutBucketPolicy",
+          "s3:GetBucketPolicy",
+          "s3:DeleteBucketPolicy"
+        ],
+        Resource  = "${aws_s3_bucket.static_site.arn}"
       }
     ]
   })
 }
 
-# Upload files to the bucket
 resource "aws_s3_object" "website_files" {
   for_each = fileset(var.website_files_path, "**/*")
 
@@ -71,4 +74,3 @@ resource "aws_s3_object" "website_files" {
     "application/octet-stream"
   )
 }
-
