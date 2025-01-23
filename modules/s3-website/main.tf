@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "static_site" {
   }
 }
 
-# Управление публичным доступом
+
 resource "aws_s3_bucket_public_access_block" "static_site_public_access_block" {
   bucket = aws_s3_bucket.static_site.id
 
@@ -17,7 +17,6 @@ resource "aws_s3_bucket_public_access_block" "static_site_public_access_block" {
   restrict_public_buckets = true
 }
 
-# Конфигурация статического сайта с использованием отдельного ресурса
 resource "aws_s3_bucket_website_configuration" "static_site_website" {
   bucket = aws_s3_bucket.static_site.id
 
@@ -25,9 +24,10 @@ resource "aws_s3_bucket_website_configuration" "static_site_website" {
     suffix = var.index_document
   }
 
-  error_document = var.error_document
+  error_document {
+    key = var.error_document
+  }
 }
-
 
 # Bucket policy
 resource "aws_s3_bucket_policy" "static_site_policy" {
