@@ -1,12 +1,5 @@
-environment           = "prod"
-project               = "project-name"
-aws_region            = "us-east-1"
-role_name             = "LambdaRole"
-role_path             = "/"
-assume_role_services  = ["lambda.amazonaws.com"]
-enable_cloudwatchlogs = true
-enable_sns_and_ses    = true
-bucket_name           = "dubovsky-andrey-website-bucket"
-index_document        = "index.html"
-error_document        = "error.html"
-website_files_path    = "./modules/s3-website/website/"
+
+aws_region   = "us-east-1"
+project_name = "notification-platform"
+
+
