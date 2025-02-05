@@ -1,5 +1,3 @@
-// Local values for deployment-specific configuration
-
 
 module "iam" {
   source       = "./modules/iam"
