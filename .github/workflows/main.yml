@@ -106,7 +106,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           echo "Waiting for 2 minutes..."
-          sleep 180
+          sleep 100
 
       - name: Terraform Destroy
         id: destroy
