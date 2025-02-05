@@ -1,19 +1,16 @@
 // Local values for deployment-specific configuration
-locals {
-  project_name = "notification-platform"
-  environment  = "dev"
-}
+
 
 module "iam" {
   source       = "./modules/iam"
-  project_name = local.project_name
-  environment  = local.environment
+  project_name = var.project_name
+  environment  = var.environment
 }
 
 module "lambda_email" {
   source       = "./modules/lambda_email"
-  project_name = local.project_name
-  environment  = local.environment
+  project_name = var.project_name
+  environment  = var.environment
   iam_role_arn = module.iam.lambda_role_arn
 }
 
