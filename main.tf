@@ -12,12 +12,12 @@ module "lambda_email" {
   iam_role_arn = module.iam.lambda_role_arn
 }
 
-# module "lambda_sms" {
-#   source       = "./modules/lambda_sms"
-#   project_name = local.project_name
-#   environment  = local.environment
-#   iam_role_arn = module.iam.lambda_role_arn
-# }
+module "lambda_sms" {
+  source       = "./modules/lambda_sms"
+  project_name = var.project_name
+  environment  = var.environment
+  iam_role_arn = module.iam.lambda_role_arn
+}
 
 # module "lambda_push" {
 #   source       = "./modules/lambda_push"
