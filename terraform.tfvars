@@ -1,5 +1,3 @@
 
 aws_region   = "us-east-1"
-project_name = "notification-platform"
-
-
+project_name = "aws-notification-platform"
