@@ -5,9 +5,9 @@ on:
       - main
   pull_request:
 permissions:
-      id-token: write # This is required for aws oidc connection
-      contents: read # This is required for actions/checkout
-      pull-requests: write # This is required for gh bot to comment PR
+  id-token: write # This is required for aws oidc connection
+  contents: read # This is required for actions/checkout
+  pull-requests: write # This is required for gh bot to comment PR
 env:
   TF_LOG: INFO
   AWS_REGION: ${{ secrets.AWS_REGION }}
@@ -44,7 +44,7 @@ jobs:
         env:
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
           AWS_BUCKET_KEY_NAME: ${{ secrets.AWS_BUCKET_KEY_NAME }}
-        run: terraform init 
+        run: terraform init
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
@@ -97,18 +97,18 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply Apply
-        id: apply 
+        id: apply
         run: terraform apply -auto-approve -input=false
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
+
       - name: Wait for 2 minutes
         id: timer
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           echo "Waiting for 2 minutes..."
-          sleep 40
-      
+          sleep 120
+
       - name: Terraform Destroy
-        id: destroy 
+        id: destroy
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform destroy -auto-approve -input=false
