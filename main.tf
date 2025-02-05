@@ -19,12 +19,12 @@ module "lambda_sms" {
   iam_role_arn = module.iam.lambda_role_arn
 }
 
-# module "lambda_push" {
-#   source       = "./modules/lambda_push"
-#   project_name = local.project_name
-#   environment  = local.environment
-#   iam_role_arn = module.iam.lambda_role_arn
-# }
+module "lambda_push" {
+  source       = "./modules/lambda_push"
+  project_name = var.project_name
+  environment  = var.environment
+  iam_role_arn = module.iam.lambda_role_arn
+}
 
 # module "sns" {
 #   source           = "./modules/sns"
