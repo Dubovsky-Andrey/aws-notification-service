@@ -5,7 +5,6 @@ It hosts a simple website with a button to trigger a notification send action.
 
 resource "aws_s3_bucket" "website_bucket" {
   bucket = "${var.project_name}-${var.environment}-website"
-  acl    = "public-read"
 
   website {
     index_document = "index.html"
