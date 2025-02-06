@@ -26,14 +26,14 @@ module "lambda_push" {
   iam_role_arn = module.iam.lambda_role_arn
 }
 
-# module "sns" {
-#   source           = "./modules/sns"
-#   project_name     = local.project_name
-#   environment      = local.environment
-#   lambda_email_arn = module.lambda_email.lambda_function_arn
-#   lambda_sms_arn   = module.lambda_sms.lambda_function_arn
-#   lambda_push_arn  = module.lambda_push.lambda_function_arn
-# }
+module "sns" {
+  source           = "./modules/sns"
+  project_name     = var.project_name
+  environment      = var.environment
+  lambda_email_arn = module.lambda_email.lambda_function_arn
+  lambda_sms_arn   = module.lambda_sms.lambda_function_arn
+  lambda_push_arn  = module.lambda_push.lambda_function_arn
+}
 
 # module "api_gateway" {
 #   source          = "./modules/api_gateway"
