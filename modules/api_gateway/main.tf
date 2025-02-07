@@ -41,7 +41,8 @@ resource "aws_api_gateway_integration" "post_send_email_integration" {
   integration_http_method = "POST"
   type                    = "AWS"
   uri                     = "arn:aws:apigateway:${var.aws_region}:sns:action/Publish"
-
+  credentials = var.sns_role_arn
+  
   request_templates = {
     "application/json" = <<EOF
 {
@@ -67,6 +68,7 @@ resource "aws_api_gateway_integration" "post_send_sms_integration" {
   integration_http_method = "POST"
   type                    = "AWS"
   uri                     = "arn:aws:apigateway:${var.aws_region}:sns:action/Publish"
+  credentials = var.sns_role_arn
 
   request_templates = {
     "application/json" = <<EOF
@@ -93,6 +95,7 @@ resource "aws_api_gateway_integration" "post_send_push_integration" {
   integration_http_method = "POST"
   type                    = "AWS"
   uri                     = "arn:aws:apigateway:${var.aws_region}:sns:action/Publish"
+  credentials = var.sns_role_arn
 
   request_templates = {
     "application/json" = <<EOF

@@ -30,3 +30,8 @@ variable "push_topic_arn" {
   description = "ARN of the SNS Push Topic"
   type        = string
 }
+
+variable "sns_role_arn" {
+  description = "ARN of the IAM role that API Gateway uses to access SNS"
+  type        = string
+}
