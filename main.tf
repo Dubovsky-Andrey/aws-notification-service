@@ -1,12 +1,12 @@
 
-module "iam" {
+module "iam_lambda_role" {
   source       = "./modules/iam_lambda_role"
   project_name = var.project_name
   environment  = var.environment
 }
 
-module "iam" {
-  source       = "./modules/iam_lambda_role"
+module "iam_api_sns" {
+  source       = "./modules/iam_api_sns"
   project_name = var.project_name
   environment  = var.environment
 }
