@@ -1,5 +1,5 @@
 
-module "iam_lambda_role" {
+module "iam_lambda" {
   source       = "./modules/iam_lambda_role"
   project_name = var.project_name
   environment  = var.environment
@@ -15,21 +15,21 @@ module "lambda_email" {
   source       = "./modules/lambda_email"
   project_name = var.project_name
   environment  = var.environment
-  iam_role_arn = module.iam.lambda_role_arn
+  iam_role_arn = module.iam_lambda.lambda_role_arn
 }
 
 module "lambda_sms" {
   source       = "./modules/lambda_sms"
   project_name = var.project_name
   environment  = var.environment
-  iam_role_arn = module.iam.lambda_role_arn
+  iam_role_arn = module.iam_lambda.lambda_role_arn
 }
 
 module "lambda_push" {
   source       = "./modules/lambda_push"
   project_name = var.project_name
   environment  = var.environment
-  iam_role_arn = module.iam.lambda_role_arn
+  iam_role_arn = module.iam_lambda.lambda_role_arn
 }
 
 module "sns" {
