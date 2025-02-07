@@ -49,7 +49,9 @@ module "api_gateway" {
   email_topic_arn = module.sns.email_topic_arn
   sms_topic_arn   = module.sns.sms_topic_arn
   push_topic_arn  = module.sns.push_topic_arn
-  sns_role_arn    = module.iam_api_sns.apigateway_sns_role
+  sns_role_arn    = module.iam_api_sns.apigateway_sns_role_arn
+
+
 }
 
 # module "s3_website" {
