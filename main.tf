@@ -52,9 +52,9 @@ module "api_gateway" {
   sns_role_arn    = module.iam_api_sns.apigateway_sns_role
 }
 
-module "s3_website" {
-  source       = "./modules/s3_website"
-  project_name = var.project_name
-  environment  = var.environment
-  api_endpoint = module.api_gateway.api_endpoint
-}
+# module "s3_website" {
+#   source       = "./modules/s3_website"
+#   project_name = var.project_name
+#   environment  = var.environment
+#   api_endpoint = module.api_gateway.api_endpoint
+# }
