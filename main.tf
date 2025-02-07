@@ -54,9 +54,9 @@ module "api_gateway" {
 
 }
 
-# module "s3_website" {
-#   source       = "./modules/s3_website"
-#   project_name = var.project_name
-#   environment  = var.environment
-#   api_endpoint = module.api_gateway.api_endpoint
-# }
+module "s3_website" {
+  source       = "./modules/s3_website"
+  project_name = var.project_name
+  environment  = var.environment
+  api_endpoint = module.api_gateway.api_endpoint
+}
